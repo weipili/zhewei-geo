@@ -6,13 +6,13 @@ import { relTime, useStore, useTheme } from '../core/store'
 import type { ThemeMode } from '../core/store'
 
 const NAV: { to: string; icon: IconName; label: string; hint: string }[] = [
-  { to: '/', icon: 'dashboard', label: '工作台', hint: '全局概览与运营数据' },
-  { to: '/audit', icon: 'radar', label: 'GEO 体检', hint: '发起检测生成报告' },
-  { to: '/reports', icon: 'report', label: '报告中心', hint: '历史报告归档' },
-  { to: '/compose', icon: 'compose', label: '内容中台', hint: '创作与多平台分发' },
-  { to: '/queue', icon: 'queue', label: '发布队列', hint: '分发状态追踪' },
-  { to: '/channels', icon: 'plug', label: '渠道管理', hint: '平台授权与健康度' },
-  { to: '/clients', icon: 'users', label: '客户管理', hint: '品牌档案' },
+  { to: '/app', icon: 'dashboard', label: '工作台', hint: '全局概览与运营数据' },
+  { to: '/app/audit', icon: 'radar', label: 'GEO 体检', hint: '发起检测生成报告' },
+  { to: '/app/reports', icon: 'report', label: '报告中心', hint: '历史报告归档' },
+  { to: '/app/compose', icon: 'compose', label: '内容中台', hint: '创作与多平台分发' },
+  { to: '/app/queue', icon: 'queue', label: '发布队列', hint: '分发状态追踪' },
+  { to: '/app/channels', icon: 'plug', label: '渠道管理', hint: '平台授权与健康度' },
+  { to: '/app/clients', icon: 'users', label: '客户管理', hint: '品牌档案' },
 ]
 
 function Logo({ compact }: { compact: boolean }) {
