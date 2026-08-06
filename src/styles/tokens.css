@@ -1,0 +1,146 @@
+/* ============================================================
+   显影 · 设计令牌
+   美学方向：Darkroom Instrument（暗房仪器）
+   - 浅色 = 灯箱看片台（暖纸白 + 墨黑）
+   - 深色 = 暗房（暖炭黑 + 安全灯琥珀）
+   - 主强调色取自暗房安全灯，刻意避开 AI 常见的青/紫蓝
+   ============================================================ */
+
+:root {
+  /* —— 排版 —— */
+  --font-display: 'Instrument Serif', 'Songti SC', 'Noto Serif SC', serif;
+  --font-sans: 'IBM Plex Sans', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'SFMono-Regular', Consolas, monospace;
+
+  /* 模块化比例 1.25，clamp 流体 */
+  --t-2xs: clamp(0.66rem, 0.64rem + 0.1vw, 0.7rem);
+  --t-xs: clamp(0.73rem, 0.71rem + 0.12vw, 0.78rem);
+  --t-sm: clamp(0.82rem, 0.79rem + 0.15vw, 0.875rem);
+  --t-base: clamp(0.925rem, 0.9rem + 0.16vw, 0.98rem);
+  --t-md: clamp(1.05rem, 1rem + 0.22vw, 1.14rem);
+  --t-lg: clamp(1.25rem, 1.15rem + 0.45vw, 1.5rem);
+  --t-xl: clamp(1.6rem, 1.4rem + 0.9vw, 2.15rem);
+  --t-2xl: clamp(2.1rem, 1.7rem + 1.8vw, 3.1rem);
+  --t-3xl: clamp(2.7rem, 2rem + 3.2vw, 4.4rem);
+
+  /* —— 空间（非均匀，制造节奏）—— */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 7rem;
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem);
+
+  /* —— 圆角：克制，仪器感 —— */
+  --r-xs: 3px;
+  --r-sm: 5px;
+  --r-md: 8px;
+  --r-lg: 12px;
+  --r-pill: 999px;
+
+  /* —— 缓动：指数型，无回弹 —— */
+  --e-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --e-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+  --e-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --d-fast: 140ms;
+  --d-base: 260ms;
+  --d-slow: 520ms;
+
+  /* —— 布局 —— */
+  --rail-w: 236px;
+  --rail-w-collapsed: 68px;
+  --topbar-h: 60px;
+}
+
+/* ---------- 浅色：灯箱看片台 ---------- */
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg: oklch(97.2% 0.009 78);
+  --bg-sunk: oklch(94.6% 0.012 76);
+  --surface: oklch(99.3% 0.004 85);
+  --surface-2: oklch(96.4% 0.008 78);
+  --surface-raised: oklch(100% 0 0);
+
+  --ink: oklch(22% 0.021 58);
+  --ink-2: oklch(41% 0.018 62);
+  --ink-3: oklch(56.5% 0.015 65);
+  --ink-4: oklch(70% 0.012 70);
+
+  --line: oklch(88.5% 0.011 72);
+  --line-2: oklch(82% 0.014 70);
+  --line-strong: oklch(70% 0.018 66);
+
+  /* 安全灯琥珀红 —— 主强调 */
+  --accent: oklch(56.5% 0.185 33);
+  --accent-hover: oklch(51% 0.19 32);
+  --accent-soft: oklch(94.5% 0.035 45);
+  --accent-soft-2: oklch(89% 0.062 42);
+  --accent-ink: oklch(41% 0.16 32);
+  --on-accent: oklch(99% 0.008 60);
+
+  /* 语义色，全部向暖偏移以统一调性 */
+  --ok: oklch(52% 0.115 152);
+  --ok-soft: oklch(94% 0.04 155);
+  --warn: oklch(64% 0.14 78);
+  --warn-soft: oklch(95% 0.05 85);
+  --danger: oklch(53% 0.185 22);
+  --danger-soft: oklch(94.5% 0.04 25);
+  --info: oklch(50% 0.1 245);
+  --info-soft: oklch(94% 0.03 245);
+
+  --shadow-sm: 0 1px 2px oklch(30% 0.03 60 / 0.06), 0 1px 1px oklch(30% 0.03 60 / 0.04);
+  --shadow-md: 0 2px 4px oklch(30% 0.03 60 / 0.05), 0 8px 22px -10px oklch(30% 0.03 60 / 0.16);
+  --shadow-lg: 0 4px 8px oklch(30% 0.03 60 / 0.06), 0 24px 56px -20px oklch(30% 0.03 60 / 0.24);
+
+  --grain-opacity: 0.028;
+  --sprocket: oklch(88% 0.012 72);
+}
+
+/* ---------- 深色：暗房 ---------- */
+[data-theme='dark'] {
+  color-scheme: dark;
+
+  --bg: oklch(17.5% 0.013 52);
+  --bg-sunk: oklch(14% 0.012 50);
+  --surface: oklch(21.4% 0.015 54);
+  --surface-2: oklch(25% 0.016 55);
+  --surface-raised: oklch(24.5% 0.017 56);
+
+  --ink: oklch(94% 0.011 80);
+  --ink-2: oklch(78% 0.014 74);
+  --ink-3: oklch(62% 0.015 70);
+  --ink-4: oklch(48% 0.015 66);
+
+  --line: oklch(30% 0.016 58);
+  --line-2: oklch(36% 0.018 58);
+  --line-strong: oklch(46% 0.02 60);
+
+  --accent: oklch(69% 0.165 42);
+  --accent-hover: oklch(75% 0.155 45);
+  --accent-soft: oklch(27% 0.05 38);
+  --accent-soft-2: oklch(33% 0.075 38);
+  --accent-ink: oklch(80% 0.13 48);
+  --on-accent: oklch(16% 0.02 40);
+
+  --ok: oklch(72% 0.14 155);
+  --ok-soft: oklch(26% 0.045 155);
+  --warn: oklch(78% 0.13 82);
+  --warn-soft: oklch(28% 0.05 82);
+  --danger: oklch(66% 0.17 25);
+  --danger-soft: oklch(27% 0.055 25);
+  --info: oklch(70% 0.11 245);
+  --info-soft: oklch(26% 0.04 245);
+
+  --shadow-sm: 0 1px 2px oklch(0% 0 0 / 0.4);
+  --shadow-md: 0 2px 6px oklch(0% 0 0 / 0.4), 0 12px 28px -12px oklch(0% 0 0 / 0.6);
+  --shadow-lg: 0 6px 14px oklch(0% 0 0 / 0.45), 0 30px 64px -24px oklch(0% 0 0 / 0.75);
+
+  --grain-opacity: 0.05;
+  --sprocket: oklch(30% 0.016 58);
+}
