@@ -1,0 +1,35 @@
+# Render Blueprint —— 一键部署前端 + 后端
+# 用法：把本项目推到 GitHub，在 render.com 用 GitHub 登录后
+#       New -> Blueprint -> 选择本仓库，Render 会按本文件自动部署。
+services:
+  # ---------- 后端（24小时在线的 Node 服务） ----------
+  - type: web
+    name: zhewei-geo-backend
+    runtime: docker
+    dockerfilePath: ./server/Dockerfile
+    plan: free
+    envVars:
+      - key: SANDBOX_MODE
+        value: "true"
+      # 上线后到 Dashboard 的 Environment 里填真实值：
+      - key: LLM_API_KEY
+        sync: false
+      - key: LLM_BASE_URL
+        value: https://api.deepseek.com/v1
+      - key: LLM_MODEL
+        value: deepseek-v4-flash
+
+  # ---------- 前端（静态站，自动构建 dist） ----------
+  - type: static
+    name: zhewei-geo-frontend
+    runtime: static
+    buildCommand: npm run build
+    staticPublishPath: ./dist
+    envVars:
+      # 后端部署完成后，把它生成的 https://xxx.onrender.com 填到这里并重新部署前端
+      - key: VITE_API_BASE
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
