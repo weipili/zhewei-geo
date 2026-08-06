@@ -6,7 +6,7 @@
    - 生产环境：同源反向代理 /api -> 后端
    ============================================================ */
 
-const API_BASE = ((import.meta.env && import.meta.env.VITE_API_BASE) as string | undefined)?.replace(/\/$/, '') || '/api'
+const API_BASE = ((import.meta as { env?: Record<string, string | undefined> }).env?.VITE_API_BASE)?.replace(/\/$/, '') || '/api'
 
 let up: boolean | null = null
 
